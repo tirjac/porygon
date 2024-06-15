@@ -1,4 +1,4 @@
-from porygon import decode, encode
+from porygon import Porygon
 
 aval = [
 	( 12001 , 1.22 , 1.45 , 5.666676 , 6.822221 , 92.1112221 ),
@@ -348,8 +348,10 @@ aval = [
 	( 14292 , 1.9522 , 1.55 , 6.666676 , 6.888881 , 92.2000221 ),
 ]
 
+pp = Porygon()
+
 print (aval)
-xx = encode (6,aval)
+xx = pp.encode (6,aval)
 print (xx)
-yy = decode (6, xx)
+yy = pp.decode (6, xx)
 print (yy)

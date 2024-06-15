@@ -39,45 +39,48 @@ def _trans(value, index):
 
 	return ~(result >> 1) if comp else (result >> 1), index
 
-def decode(items: int, expression: str, precision: int = 5) -> List[Tuple]:
-	"""
-	Decode a polyline string into a set of cvalues.
+class Porygon:
+	""" class def """
 
-	:param items : No of items 
-	:param expression: Polyline string, e.g. '_ih_pfA_hmFoezGwwqa@{msh@cneqP_qo]gyuC??s_L?_{rc@~uJ???_jP'
-	:param precision: Precision of the encoded cvalues.  The default value is 5.
-	:return: List of coordinate tuples in (ts, a, b, c, d, e) order
-	"""
-	cvalues, index, length, factor = [], 0, len(expression), float(10 ** precision)
-	xitem = [0.0] * items
+	def decode(self, items: int, expression: str, precision: int = 5) -> List[Tuple]:
+		"""
+		Decode a polyline string into a set of cvalues.
 
-	while index < length:
-		yitem = [0.0] * items
+		:param items : No of items 
+		:param expression: Polyline string, e.g. '_ih_pfA_hmFoezGwwqa@{msh@cneqP_qo]gyuC??s_L?_{rc@~uJ???_jP'
+		:param precision: Precision of the encoded cvalues.  The default value is 5.
+		:return: List of coordinate tuples in (ts, a, b, c, d, e) order
+		"""
+		cvalues, index, length, factor = [], 0, len(expression), float(10 ** precision)
+		xitem = [0.0] * items
+
+		while index < length:
+			yitem = [0.0] * items
+			for x in range(items):
+				xx_change, index = _trans(expression, index)
+				xitem[x] += xx_change
+				yitem[x] = xitem[x]/factor
+
+			cvalues.append(tuple(yitem))
+
+		return cvalues
+
+	def encode(self, items: int, cvalues: List[Tuple], precision: int = 5) -> str:
+		"""
+		Encode a set of cvalues in a polyline string.
+
+		:param items : No of items 
+		:param cvalues: List of cvalue tuples
+		:param precision: Precision of the cvalues to encode.  The default value is 5.
+		:return: The encoded polyline string.
+		"""
+		output, factor = io.StringIO(), int(10 ** precision)
+
 		for x in range(items):
-			xx_change, index = _trans(expression, index)
-			xitem[x] += xx_change
-			yitem[x] = xitem[x]/factor
+			_write(output, cvalues[0][x], 0, factor)
 
-		cvalues.append(tuple(yitem))
+		for prev, curr in _pcitr(cvalues):
+			for x in range(items):
+				_write(output, curr[x], prev[x], factor)
 
-	return cvalues
-
-def encode(items: int, cvalues: List[Tuple], precision: int = 5) -> str:
-	"""
-	Encode a set of cvalues in a polyline string.
-
-	:param items : No of items 
-	:param cvalues: List of cvalue tuples
-	:param precision: Precision of the cvalues to encode.  The default value is 5.
-	:return: The encoded polyline string.
-	"""
-	output, factor = io.StringIO(), int(10 ** precision)
-
-	for x in range(items):
-		_write(output, cvalues[0][x], 0, factor)
-
-	for prev, curr in _pcitr(cvalues):
-		for x in range(items):
-			_write(output, curr[x], prev[x], factor)
-
-	return output.getvalue()
+		return output.getvalue()

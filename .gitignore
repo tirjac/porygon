@@ -23,9 +23,10 @@ __pycache__/
 *.so
 __pypackages__/
 venv/
+?
 ??
-??.py
 ?.py
+??.py
 
 # cpp
 cmake-build-debug
