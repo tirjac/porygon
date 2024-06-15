@@ -3,4 +3,6 @@
 polyline format extended to bci points
 
 porygon.py : Python fx
-test.py : Python test fx
+
+test_small.py : Python test fx
+test_large.py : Python test fx for large no of values
