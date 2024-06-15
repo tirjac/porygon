@@ -1,4 +1,5 @@
 from porygon import Porygon
+import json
 
 aval = [
 	( 12001 , 1.22 , 1.45 , 5.666676 , 6.822221 , 92.1112221 ),
@@ -350,8 +351,12 @@ aval = [
 
 pp = Porygon()
 
-print (aval)
+#print (aval)
 xx = pp.encode (6,aval)
-print (xx)
+#print (xx)
 yy = pp.decode (6, xx)
-print (yy)
+#print (yy)
+
+print ( "Json String: %d" % len(json.dumps(aval)) )
+print ( "Polyline String: %d" % len(xx) )
+
