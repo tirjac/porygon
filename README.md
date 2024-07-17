@@ -1,6 +1,6 @@
 # porygon
 
-polyline format extended to bci points
+polyline format extended to artibrary array of arrays
 
 porygon.py : Python fx
 
