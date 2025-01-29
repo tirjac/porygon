@@ -5,10 +5,8 @@ This uses polyline format , which can achieve logical compression depending on s
 
 There is a python and a javascript library along with examples. You will just need to add this one file to your project.
 
-porygon.py : Python fx
-porygon.js : javascript fx
 
-## Usage in Python:
+## Usage in Python: (porygon.py)
 
 The Porygon object has two functions:
 
@@ -42,7 +40,7 @@ yy = pp.decode (6, xx, USE_PREC)
 print (yy)
 ```
 
-## Usage in Javascript:
+## Usage in Javascript: (porygon.js)
 
 The above in javascript.
 
