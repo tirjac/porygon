@@ -10,14 +10,20 @@ There is a python and a javascript library. You will just need to add this one f
 The Porygon object has two functions:
 
 encode : Encode a set of cvalues and returns the encoded polyline string.
-- param `items` : Required. No of items in the array
-- param `data`  : Required. List of cvalue tuples like ( 12001 , 1.22 , 1.45 , 5.666676 , 6.822221 , 92.1112221 ).
-- param `precision` Optional. Precision to store of the encoded cvalues.  The default value is 5.
+
+| PARAM | POS | DESC |
+| --- | ----- | ---- |
+| `items` | 1 |  Required. No of items in the array
+| `data_array` | 2 |  Required. List of cvalue tuples like ( 12001 , 1.22 , 1.45 , 5.666676 , 6.822221 , 92.1112221 ).
+| `precision` | 3 | Optional. Precision to store of the encoded cvalues.  The default value is 5.
 
 decode : Decode a polyline string into a set of cvalues and returns  List of coordinate tuples in order.
-- param `items` : Required. No of items in the array
-- param `data`  : Required. Polyline string to decode , e.g. '_ih_pfA_hmFoezGwwqa@{msh@cneqP_qo]gyuC??s_L?_{rc@~uJ???_jP'
-- param `precision` Optional. Precision as stored should be same as encoded.  The default value is 5.
+
+| PARAM | POS | DESC |
+| --- | ----- | ---- |
+| `items` | 1 |  Required. No of items in the array
+| `data_string` | 2 |  Required.  Polyline string to decode , e.g. '_ih_pfA_hmFoezGwwqa@{msh@cneqP_qo]gyuC??s_L?_{rc@~uJ???_jP'
+| `precision` | 3 | Optional. Precision as stored should be same as encoded.  The default value is 5.
 
 
 ```
